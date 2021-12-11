@@ -1,0 +1,1 @@
+void czytaj(FILE *in, double **tab, double *wynik, int x);
