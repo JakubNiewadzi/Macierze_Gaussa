@@ -2,9 +2,10 @@
 #include <math.h>
 
 
-void zamien(double **tab, double *wynik, int i, int x){
+void zamien(double **tab, double *wynik, int i, int x, int *zmienione){
   double max = tab[i][0];
   double tmp;
+  int pomoc;
   int max_j=0;
   for(int j=0;j<x-i;j++){
     if(fabs(tab[j][i])>fabs(max)){
@@ -12,6 +13,10 @@ void zamien(double **tab, double *wynik, int i, int x){
       max_j=j;
     }
   }
+  pomoc=zmienione[max_j];
+  zmienione[max_j]=zmienione[x-i-1];
+  zmienione[x-i-1]=pomoc;
+  
   if(max!=tab[i][x-1-i]){
     for(int j =0;j<x;j++){ 
       tmp = tab[x-1-i][j];
