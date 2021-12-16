@@ -1,1 +1,0 @@
-void zamien(double **tab, double *wynik, int i, int x, int *zmienione);
