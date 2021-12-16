@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 //#define BUFSIZE 8192
 
 #include "wypisz.h"
@@ -37,20 +38,18 @@ int main( int argc, char **argv )
   for (int i = 0; i < x-1; i++ )
   {
     zamien(tab, wynik, i, x);
-    for (int j=0;j<pom;j++) //zerowanie kolejnych wierszy
+    for (int j=0;j<x-1-i;j++) //zerowanie kolejnych wierszy
     {
-      przezco=tab[pom][i]/tab[j][i];
-      
-      for (int k=0;k<x;k++) // mnożenie wiersza przez wyznaczoną stałą
+      double przezco=tab[j][i]/tab[pom-i][i];
+      for (int k=i;k<x;k++) // mnożenie wiersza przez wyznaczoną stałą
         {
-          tab[j][k]=tab[j][k]*przezco-tab[pom][k]; //POMNOŻYĆ WYNIK!!!
+          tab[j][k]-=(tab[pom-i][k]*przezco);        
+          wypisz(tab, wynik, x); 
+           //POMNOŻYĆ WYNIK!!!
         }
-      wynik[j]=wynik[j]*przezco-wynik[pom];
-      
-
-
+      wynik[j]-=przezco*wynik[pom-i];
+  
     }
-    pom-=1;
     wypisz(tab, wynik, x);
   }
 
